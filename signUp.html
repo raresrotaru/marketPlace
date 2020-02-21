@@ -2,15 +2,55 @@
 <html>
 
 <head>
-	<title>Ties & Socks for Men | Tiesnsocks.com</title>
+    <title>Sign Up | Tiesnsocks.com</title>
     <meta charset="UTF-8" />
-    <link rel="stylesheet" href="/styles.css" />
+    <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="signUp.css" />
 </head>
 
 <body>
-    <header></header>
-    <footer></footer>
-
+    <a href="index.html"><img src="logo.png" alt="logo of the website"/></a>
+    <div id="formContainer">
+        <div class="container" id="title">
+            <h1>CREATE AN ACCOUNT</h1>
+            <p style="padding-left: 15px; padding-right: 15px;">Sign up to place orders faster, receive a lot of new
+                offers directly to your email & more.</p>
+        </div>
+        <div class="container" id="signUpForm">
+            <form class="theForm">
+                <div id="firstAndLast">
+                    <label for="firstName" class="label">First Name</label>
+                    <input type="text" id="firstName" class="allInputs" name="First Name" placeholder="First Name"
+                        required />
+                    <label for="lastName" class="label">Last Name</label>
+                    <input type="text" id="lastName" class="allInputs" name="Last Name" placeholder="Last Name"
+                        required />
+                </div>
+                <label for="email" class="label">Email Address</label>
+                <input type="email" id="email" class="allInputs2" name="Email" placeholder="Email Address" required />
+                <div id="firstPass">
+                    <label for="pass" class="label">Password</label>
+                    <input type="password" id="pass" class="allInputs2" name="Password" placeholder="Password"
+                        required />
+                    <div id="showPass"></div>
+                </div>
+                <div id="secondPass">
+                    <label for="rePass" class="label">Re-enter password</label>
+                    <input type="password" id="rePass" class="allInputs2" name="Re-enter password"
+                        placeholder="Re-enter password" required />
+                    <div id="showPass2"></div>
+                </div>
+                <div id="terms">
+                    <input type="checkbox" id="termsAndConditions" name="Terms" required>
+                    <label for="termsAndConditions">By creating your account, you agree to our Terms and Conditions &
+                        Privacy Policy</label>
+                </div>
+                <button id="btn"><b>CREATE ACCOUNT</b></button>
+            </form>
+            <a href="login.html" style="padding-bottom: 15px;">Already have an account? Sign in here!</a>
+        </div>
+    </div>
+    <script src="signUp.js"></script>
 </body>
 
 </html>

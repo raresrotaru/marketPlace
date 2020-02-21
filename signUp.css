@@ -1,0 +1,157 @@
+* {
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-color: #f0f0f0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+#formContainer {
+    border: 0px solid white;
+    border-radius: 20px;
+    width: 440px;
+    height: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    /* position: absolute; */
+    /* top:0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+    margin: auto; */
+    background-color: white;
+    box-shadow: 1px 2px 5px #CCC;
+    overflow: hidden;
+    margin-top: 50px;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#title {
+    text-align: center;
+    background-image: url(signBackground2.png);
+    background-size: cover;
+}
+
+#signUpForm {
+    height: 350px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.theForm {
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.label {
+    display: none;
+}
+
+#terms {
+    padding-left: 10px;
+    padding-right: 10px;
+    text-align: center;
+}
+
+.allInputs, .allInputs2 {
+    height: 30px;
+    border: 1px solid #999;
+    border-radius: 10px;
+    padding-left: 5px;
+    margin: 0;
+    outline: none;
+    transition: border-color 0.35s ease;
+    box-shadow: 1px 2px 5px #CCC;
+}
+
+.allInputs:focus, .allInputs2:focus {
+    border-color: #1565c7;
+}
+
+.allInputs {
+    width: 146px;
+}
+
+.allInputs2 {
+    width: 200px;
+    transition: width 0.35s ease;
+}
+
+.allInputs2:focus {
+    width: 300px
+}
+
+#btn {
+    width: 207px;
+    height: 34px;
+    border: 0px solid white;
+    border-radius: 10px;
+    color: white;
+    background-color: #1565c7;
+    cursor: pointer;
+    outline: none;
+    transition: transform 0.2s ease;
+    box-shadow: 1px 2px 5px #CCC;
+}
+
+#btn:focus {
+    background-color: #1306c4;
+}
+
+#btn:hover {
+    transform: translateY(5px);
+}
+
+#showPass, #showPass2 {
+    width: 13px;
+    height: 13px;
+    border: solid 1px #000;
+    border-radius: 75% 15%;
+    position: relative;
+    transform: rotate(45deg) translate(-10px, 25px);
+    background-image: linear-gradient(to bottom, black 50%, white 50%);
+    background-size: 100% 200%;
+    transition: background-position .2s ease-in-out, color .2s ease-in-out;
+}
+
+#showPass:before, #showPass2:before {
+    content: '';
+    display: block;
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    border: solid 1px #000;
+    border-radius: 50%;
+    left: 3px;
+    top: 3px;
+    background-color: black;
+    transition: background-color 0.1s ease;
+    transition-delay: 0.1s;
+}
+
+#showPass:hover, #showPass2:hover {
+    background-position: 0 100%;
+}
+
+#showPass:hover:before, #showPass2:hover:before {
+    background-color: #1565c7;
+}
+
+#firstPass, #secondPass {
+    display: flex;
+    transform: translateX(8px);
+}

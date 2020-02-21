@@ -2,25 +2,46 @@
 <html>
 
 <head>
-	<title>Sign In | Tiesnsocks.com</title>
+    <title>Sign In | Tiesnsocks.com</title>
     <meta charset="UTF-8" />
-    <link rel="stylesheet" href="/login.css" />
+    <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="login.css" />
 </head>
 
 <body>
-    <section class="hero">
-        <div class="loginForm">
-            <h1 class="title">Login To Your Account Now!</h1>  
-            <form>
-                Your Email Address: 
-                <input type="email" name="email" placeholder="john.doe@yourdomain.com">
-                Your Password:
-                <input type="password" name="password">
-                <button type="button" class="signInButton">Sign In</button>
-            </form>
-            <a href="file:///C:/Users/RRR/Desktop/proiect/signUp.html">If you don't have an account, sign up here!</a>   
+    <a href="index.html"><img src="logo.png" alt="logo of the website" style="padding-top: 8px;"/></a>
+    <div id="formContainer">
+        <div class="container" id="title">
+            <h1>SIGN IN</h1>
         </div>
-    </section>
+        <div class="container" id="signInDiv">
+            <form class="theForm">
+                <label for="email" class="label">Email Address</label>
+                <input type="email" id="email" class="allInputs" name="Email" placeholder="Email Address" required />
+                <div id="passDiv">
+                    <label for="pass" class="label">Password</label>
+                    <input type="password" id="pass" class="allInputs" name="Password" placeholder="Password"
+                        required />
+                    <div id="showPass"></div>
+                </div>
+                <div class="container">
+                    <button id="btn"><b>LOGIN</b></button>
+                    <a href="#" style="align-self: flex-start; padding-top: 15px;">Forgot Password?</a>
+                </div>
+            </form>
+            <div class="container">
+                <p style="text-align: center; font-size: 14px;">Sign Up using</p>
+                <div id="signUpLogo">
+                    <a href="#" id="fbSignUp"><img src="facebookLogo.png" alt="Facebook Sign Up Logo"
+                            style="width: 30px; height: 30px;"></a>
+                    <a href="#" id="gSignUp"><img src="googlePlusLogo.png" alt="Google Plus Sign Up Logo"
+                            style="width: 30px; height: 30px;"></a>
+                </div>
+                <a href="signUp.html" style="padding-bottom: 10px;">Create account? Sign up</a>
+            </div>
+        </div>
+    </div>
+    <script src="signIn.js"></script>
 </body>
 
 </html>
