@@ -15,6 +15,12 @@ html, body {
     height: 100%;
 }
 
+body {
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+}
+
 
 header {
     display: flex;
@@ -99,6 +105,25 @@ header {
     cursor: pointer;
     transform: translateY(3px);
 }
+
+#mainContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    width: 1150px;
+    align-self: center;
+}
+
+div.products {
+    width: 200px;
+    height: 370px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space;
+    margin: 10px;
+}
+
 
 footer {
     background-color: #212121;

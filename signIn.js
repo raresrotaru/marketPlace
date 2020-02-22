@@ -16,6 +16,6 @@ function myFn(e) {
     .then(r => r.json())
     .then(response => {
       sessionStorage.setItem("token", response.token);
-      window.location.assign("./ties.html");
+      window.location.assign("./index.html");
     });
 }

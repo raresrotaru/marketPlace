@@ -1,3 +1,10 @@
+fetch("http://localhost:3000/api/main", {
+  headers: { Authorization: `Bearer ${sessionStorage.getItem("token")}` }
+})
+  .then(r => r.json())
+  .then(content =>{
+    console.log(content);})
+
 const carouselSlide = document.querySelector(".carousel-slide");
 const carouselImages = document.querySelectorAll(".carousel-slide img");
 
