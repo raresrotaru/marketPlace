@@ -1,4 +1,4 @@
-fetch("http://localhost:3000/api/ties", {
+fetch("http://localhost:3000/api/bowTies", {
   headers: { Authorization: `Bearer ${sessionStorage.getItem("token")}` }
 })
   .then(r => r.json())
@@ -20,7 +20,6 @@ fetch("http://localhost:3000/api/ties", {
         const addToWishlist = card.appendChild(document.createElement("button"));
         addToWishlist.classList = "addToWishlistBtn";
         addToWishlist.innerHTML = "Add To Wishlist";
-        console.log(content);
       }
 })
 
@@ -51,6 +50,4 @@ function scrollFunction() {
 function backToTop() {
     window.scrollTo(0, 0);
 }
-
-
 
