@@ -10,11 +10,6 @@ html {
     scroll-behavior: smooth;
 }
 
-html, body {
-    width: 100%;
-    height: 100%;
-}
-
 body {
     display: flex;
     flex-direction: column;
@@ -106,11 +101,155 @@ header {
     transform: translateY(3px);
 }
 
+/* Second navigation bar */
+
+#navBar2 {
+    background-color: #212121;
+    border-bottom: 1px solid #212121;
+  }
+  
+  #navBar2 ul {
+    display: flex;
+    justify-content: center;
+  }
+  
+  li.menuElements {
+    background-color: #212121;
+  }
+  
+  #navBar2 ul li a {
+    color: white;
+    text-decoration: none;
+  }
+  
+  /* The dropmenu */
+  
+  #navBar2 ul li ul {
+    flex-direction: column;
+  }
+  
+  #navBar2 ul li ul li a {
+    padding-left: 10px;
+    width: 100%;
+  }
+  
+  #navBar2 ul li ul li {
+    display: none;
+    background-color: #212121;
+    z-index: 1;
+    opacity: 0;
+    align-items: flex-start;
+    justify-content: center;
+    font-size: 14px;
+    padding: 20px 0 20px 0;
+  }
+  
+  #navBar2 ul li:hover ul li {
+    display: flex;
+    animation: load 0.3s forwards;
+  }
+  
+  @keyframes load {
+    0% {
+      transform: translateY(40px) scale(1.3);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0px) scale(1);
+    }
+  }
+  
+  #navBar2 ul li ul li:first-child {
+    animation-delay: 0s;
+  }
+  
+  #navBar2 ul li ul li:nth-child(2) {
+    animation-delay: 0.05s;
+  }
+  
+  #navBar2 ul li ul li:nth-child(3) {
+    animation-delay: 0.1s;
+  }
+  
+  #navBar2 ul li ul li:last-child {
+    animation-delay: 0.15s;
+  }
+  
+  #navBar2 ul li {
+    list-style-type: none;
+    width: 200px;
+    height: 35px;
+    padding-top: 5px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    position: relative;
+  }
+  
+  /* The line effect for the items from second navigation bar */
+  
+  #navBar2 ul .menuElements::before {
+    content: "";
+    display: block;
+    height: 4px;
+    background-color: white;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0%;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  #navBar2 ul .menuElements:hover::before {
+    width: 100%;
+  }
+  
+  .submenu li::before {
+    content: "";
+    display: block;
+    height: 2px;
+    background-color: white;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0%;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .submenu li:hover::before {
+    width: 100%;
+  }
+  
+  /* End effect */
+
+  /* End second navigation bar  */
+
+  /* Presentation image  */
+
+div#presentationImg {
+    box-sizing: border-box;
+    width: 100vw;
+    height: 400px;
+    background-image: url(presentationImg.jpg);
+    background-repeat: no-repeat;
+    background-position: top;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+div#presentationImg h1 {
+    font-size: 60px;
+    color: #f0f0f0;
+}
+
 #mainContainer {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
-    width: 1150px;
+    width: 1050px;
     align-self: center;
 }
 
@@ -120,10 +259,52 @@ div.products {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space;
     margin: 10px;
+    position: relative;
 }
 
+
+.products img {
+    width: 100%;
+    height: 300px;
+    transition: all 0.2s ease-in-out;
+}
+
+.products:hover img{
+    filter: brightness(50%);
+}
+
+.addToCartBtn {
+    display: none;
+    position: absolute;
+    top: 30%;
+    width: 130px;
+    height: 35px;
+    border: none;
+    border-radius: 15px;
+    background-color: #1565c7;
+    color: #f0f0f0;
+    cursor: pointer;
+}
+
+.addToWishlistBtn {
+    display: none;
+    position: absolute;
+    top: 45%;
+    width: 130px;
+    height: 35px;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+}
+
+.products:hover .addToCartBtn {
+    display: inline;
+}
+
+.products:hover .addToWishlistBtn {
+    display: inline;
+}
 
 footer {
     background-color: #212121;
@@ -294,12 +475,4 @@ footer {
     }
 }
 
-.products {
-    width: 200px;
-    height: 400px;
-}
 
-.products img {
-    width: 100%;
-    height: 300px;
-}

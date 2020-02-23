@@ -14,6 +14,12 @@ fetch("http://localhost:3000/api/ties", {
         productName.innerHTML = content[i].name;
         const productPrice = card.appendChild(document.createElement("h4"));
         productPrice.innerHTML = content[i].price;
+        const addToCart = card.appendChild(document.createElement("button"));
+        addToCart.classList = "addToCartBtn";
+        addToCart.innerHTML = "Add To Cart";
+        const addToWishlist = card.appendChild(document.createElement("button"));
+        addToWishlist.classList = "addToWishlistBtn";
+        addToWishlist.innerHTML = "Add To Wishlist";
       }
 })
 

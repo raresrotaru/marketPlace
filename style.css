@@ -234,6 +234,16 @@ li.menuElements {
 
 /* End effect */
 
+/* Sticky navbar */
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1;
+}
+
+
 /* End second navigation bar  */
 
 /* The carousel box  */

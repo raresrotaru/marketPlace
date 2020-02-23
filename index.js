@@ -80,3 +80,18 @@ function scrollFunction() {
 function backToTop() {
     window.scrollTo(0, 0);
 }
+
+//Sticky navbar 
+
+window.onscroll = function() {mySticky()};
+
+var navbar = document.getElementById("navBar2");
+var sticky = navbar.offsetTop;
+
+function mySticky() {
+  if (window.pageYOffset >= sticky) {
+    navbar.classList.add("sticky")
+  } else {
+    navbar.classList.remove("sticky");
+  }
+}
