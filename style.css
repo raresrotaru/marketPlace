@@ -131,6 +131,12 @@ li.menuElements {
 #navBar2 ul li a {
   color: white;
   text-decoration: none;
+  width: 100%;
+  
+}
+
+#navBar2 ul li a:first-of-type {
+  text-align: center;
 }
 
 /* The dropmenu */
@@ -142,6 +148,7 @@ li.menuElements {
 #navBar2 ul li ul li a {
   padding-left: 10px;
   width: 100%;
+  text-align: left !important;
 }
 
 #navBar2 ul li ul li {

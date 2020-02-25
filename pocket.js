@@ -1,4 +1,4 @@
-fetch("http://localhost:3000/api/socks", {
+fetch("http://localhost:3000/api/pocket", {
   headers: { Authorization: `Bearer ${sessionStorage.getItem("token")}` }
 })
   .then(r => r.json())
