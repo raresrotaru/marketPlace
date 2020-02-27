@@ -230,6 +230,54 @@ li.menuElements {
 
 /* End second navigation bar  */
 
+/* Main container  */
+
+#mainContainer {
+    width: 1050px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-self: center;
+    margin: 10px;
+}
+
+#preview {
+    height: 600px;
+    border: 1px solid black;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+#images {
+    width: 150px;
+    margin: 10px;
+    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+#firstImage, #secondImage {
+    width: 130px;
+    height: 200px;
+    border: 1px solid black;
+}
+
+#imageCarousel {
+    width: 400px;
+    border: 1px solid black;
+    margin: 10px;
+}
+
+#mainInformation {
+    width: 400px;
+    border: 1px solid black;
+    margin: 10px;
+}
+
+/* End Main container  */
+
 footer {
     background-color: #212121;
     display: flex;
