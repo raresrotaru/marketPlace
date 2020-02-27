@@ -1,9 +1,10 @@
 fetch("http://localhost:3000/api/main", {
-  headers: { Authorization: `Bearer ${sessionStorage.getItem("token")}` }
+    headers: { Authorization: `Bearer ${sessionStorage.getItem("token")}` }
 })
-  .then(r => r.json())
-  .then(content =>{
-    console.log(content);})
+    .then(r => r.json())
+    .then(content => {
+        console.log(content);
+    })
 
 const carouselSlide = document.querySelector(".carousel-slide");
 const carouselImages = document.querySelectorAll(".carousel-slide img");
@@ -83,15 +84,15 @@ function backToTop() {
 
 //Sticky navbar 
 
-window.onscroll = function() {mySticky()};
+window.onscroll = function () { mySticky() };
 
 var navbar = document.getElementById("navBar2");
 var sticky = navbar.offsetTop;
 
 function mySticky() {
-  if (window.pageYOffset >= sticky) {
-    navbar.classList.add("sticky")
-  } else {
-    navbar.classList.remove("sticky");
-  }
+    if (window.pageYOffset >= sticky) {
+        navbar.classList.add("sticky")
+    } else {
+        navbar.classList.remove("sticky");
+    }
 }

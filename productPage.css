@@ -230,86 +230,6 @@ li.menuElements {
 
 /* End second navigation bar  */
 
-/* Presentation image  */
-
-div#presentationImg {
-    box-sizing: border-box;
-    width: 100vw;
-    height: 400px;
-    background-image: url(presentationImg.jpg);
-    background-repeat: no-repeat;
-    background-position: top;
-    background-size: cover;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-div#presentationImg h1 {
-    font-size: 60px;
-    color: #f0f0f0;
-}
-
-#mainContainer {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    width: 1050px;
-    align-self: center;
-}
-
-div.products {
-    width: 200px;
-    height: 370px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 10px;
-    position: relative;
-}
-
-.products img {
-    width: 100%;
-    height: 300px;
-    transition: all 0.2s ease-in-out;
-}
-
-.products:hover img {
-    filter: brightness(50%);
-}
-
-.addToCartBtn {
-    display: none;
-    position: absolute;
-    top: 30%;
-    width: 130px;
-    height: 35px;
-    border: none;
-    border-radius: 15px;
-    background-color: #1565c7;
-    color: #f0f0f0;
-    cursor: pointer;
-}
-
-.addToWishlistBtn {
-    display: none;
-    position: absolute;
-    top: 45%;
-    width: 130px;
-    height: 35px;
-    border: none;
-    border-radius: 15px;
-    cursor: pointer;
-}
-
-.products:hover .addToCartBtn {
-    display: inline;
-}
-
-.products:hover .addToWishlistBtn {
-    display: inline;
-}
-
 footer {
     background-color: #212121;
     display: flex;
@@ -477,15 +397,4 @@ footer {
         opacity: 0;
         transform: scale3d(0.3, 0.3, 0.3);
     }
-}
-
-.errorContainer {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-.errorTitle {
-    font-size: 100px;
 }
