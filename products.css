@@ -500,3 +500,8 @@ footer {
 .errorTitle {
     font-size: 100px;
 }
+
+.productName, .productPrice {
+    width: 100%;
+    text-align: center;
+}

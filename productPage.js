@@ -39,3 +39,16 @@ function mySticky() {
         navbar.classList.remove("sticky");
     }
 }
+
+//Load product on page
+
+// console.log(`${localStorage.getItem("productObject")}`)
+
+window.addEventListener("load", loadProduct)
+
+function loadProduct() {
+    const product = JSON.parse(`${localStorage.getItem("productObject")}`)
+    const imageCarousel = document.getElementById("imageCarousel")
+    imageCarousel.innerHTML = `<img src="${product.image2}" id="lastClone" alt="" style="width: 100%; height: 100%" /> <img src="${product.image}" alt="" style="width: 100%; height: 100%"/> <img src="${product.image2}" alt="" style="width: 100%; height: 100%"/> <img src="${product.image}" id="firstClone" alt="" style="width: 100%; height: 100%"/>`
+    console.log(product)
+}

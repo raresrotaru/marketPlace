@@ -13,6 +13,8 @@ fetch("http://localhost:3000/api/ties", {
       const addToCart = card.appendChild(document.createElement("button"));
       const addToWishlist = card.appendChild(document.createElement("button"));
       productPageLink.setAttribute("href", "productPage.html");
+      productPageLink.setAttribute("id", content[i].id);
+      productPageLink.classList = "product";
       image.setAttribute("src", content[i].image);
       card.classList = "products";
       image.classList = "images";
@@ -20,7 +22,7 @@ fetch("http://localhost:3000/api/ties", {
       productPrice.classList = "productPrice";
       addToCart.classList = "addToCartBtn";
       addToWishlist.classList = "addToWishlistBtn";
-      productName.innerHTML = content[i].name; 
+      productName.innerHTML = content[i].name;
       productPrice.innerHTML = content[i].price;
       addToCart.innerHTML = "Add To Cart";
       addToWishlist.innerHTML = "Add To Wishlist";
@@ -69,5 +71,20 @@ function backToTop() {
   window.scrollTo(0, 0);
 }
 
+window.addEventListener("load", loadProduct)
 
-
+function loadProduct() {
+  const product = document.getElementsByClassName("product")
+  for (var i = 0; i < product.length; i++) {
+    product[i].addEventListener("click", getProduct)
+    function getProduct(e) {
+      fetch(`http://localhost:3000/api/ties/${e.target.parentNode.id}`, {
+        headers: { Authorization: `Bearer ${sessionStorage.getItem("token")}` }
+      })
+        .then(r => r.json())
+        .then(content => {
+          localStorage.setItem("productObject", JSON.stringify(content))
+        })
+    }
+  }
+}

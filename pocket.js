@@ -13,6 +13,8 @@ fetch("http://localhost:3000/api/pocket", {
       const addToCart = card.appendChild(document.createElement("button"));
       const addToWishlist = card.appendChild(document.createElement("button"));
       productPageLink.setAttribute("href", "productPage.html");
+      productPageLink.setAttribute("id", content[i].id);
+      productPageLink.classList = "product";
       image.setAttribute("src", content[i].image);
       card.classList = "products";
       image.classList = "images";
@@ -69,3 +71,20 @@ function backToTop() {
   window.scrollTo(0, 0);
 }
 
+window.addEventListener("load", loadProduct)
+
+function loadProduct() {
+  const product = document.getElementsByClassName("product")
+  for (var i = 0; i < product.length; i++) {
+    product[i].addEventListener("click", getProduct)
+    function getProduct(e) {
+      fetch(`http://localhost:3000/api/pocket/${e.target.parentNode.id}`, {
+        headers: { Authorization: `Bearer ${sessionStorage.getItem("token")}` }
+      })
+        .then(r => r.json())
+        .then(content => {
+          localStorage.setItem("productObject", JSON.stringify(content))
+        })
+    }
+  }
+}
