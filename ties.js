@@ -73,6 +73,8 @@ function backToTop() {
 
 window.addEventListener("load", loadProduct)
 
+localStorage.removeItem("productObject")
+
 function loadProduct() {
   const product = document.getElementsByClassName("product")
   for (var i = 0; i < product.length; i++) {

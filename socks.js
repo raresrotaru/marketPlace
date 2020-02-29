@@ -71,6 +71,8 @@ function backToTop() {
   window.scrollTo(0, 0);
 }
 
+localStorage.removeItem("productObject")
+
 window.addEventListener("load", loadProduct)
 
 function loadProduct() {
@@ -83,6 +85,7 @@ function loadProduct() {
       })
         .then(r => r.json())
         .then(content => {
+
           localStorage.setItem("productObject", JSON.stringify(content))
         })
     }
