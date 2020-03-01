@@ -263,7 +263,6 @@ li.menuElements {
 
 #preview {
     height: 600px;
-    border: 1px solid black;
     display: flex;
     justify-content: space-evenly;
 }
@@ -272,7 +271,6 @@ li.menuElements {
 #images {
     width: 150px;
     margin: 10px;
-    border: 1px solid black;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
@@ -282,7 +280,11 @@ li.menuElements {
 #firstImage, #secondImage {
     width: 130px;
     height: 200px;
-    border: 1px solid black;
+    border: none;
+}
+
+#firstImage:active, #secondImage:active {
+    border: 1px solid #1565c7;
 }
 
 #imageContainer {
@@ -299,8 +301,70 @@ li.menuElements {
 
 #mainInformation {
     width: 400px;
-    border: 1px solid black;
     margin: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+#addToCart {
+    width: 100%;
+    height: 40px;
+    background-color: #1565c7;
+    color: #f0f0f0;
+    border: none;
+    border-radius: 15px;
+    text-align: center;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+#addToWishlist {
+    width: 100%;
+    height: 40px;
+    border: none;
+    border-radius: 15px;
+    text-align: center;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+#qty {
+    width: 100%;
+    height: 40px;
+    border: none;
+    display: flex;
+    justify-content: space-between;
+    overflow: hidden;
+    border-radius: 15px;
+    background-color: #ededed;
+    align-items: center;
+}
+
+#qty span {
+    display: flex;
+    width: 90px;
+    justify-content: space-between;
+}
+
+#remove, #add {
+    width: 75px;
+    height: 100%;
+    border: none;
+    font-size: 30px;
+    cursor: pointer;
+    color: #919191;
+}
+
+#remove:hover, #add:hover {
+    color: black;
+}
+
+#description {
+    width: 100%;
+    text-align: justify;
+    text-indent: 20px;
 }
 
 /* End Main container  */

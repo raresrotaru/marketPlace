@@ -29,10 +29,18 @@ function backToTop() {
 
 window.addEventListener("load", loadProduct)
 
+const product = JSON.parse(localStorage.getItem("productObject"))
+
 function loadProduct() {
-    const product = JSON.parse(localStorage.getItem("productObject"))
     const imageCarousel = document.getElementById("imageCarousel")
+    const firstImage = document.getElementById("firstImage")
+    const secondImage = document.getElementById("secondImage")
+    const mainInformation = document.getElementById("mainInformation")
+    firstImage.innerHTML = `<img src="${product.image}" alt="" style="width: 100%; height:100%";/>`
+    secondImage.innerHTML = `<img src="${product.image2}" alt="" style="width: 100%; height:100%"/>`
     imageCarousel.innerHTML = `<img src="${product.image2}" id="lastClone" alt="" style="width: 400px" /> <img src="${product.image}" alt="" style="width: 400px"/>  <img src="${product.image2}" alt="" style="width: 400px"/> <img src="${product.image}" id="firstClone" alt="" style="width: 400px"/>`
+    mainInformation.innerHTML = `<h1>${product.name}</h1> <h5>${product.info.brand}® by Tiesnsocks.com</h5><h2>${product.price}</h2><p>FREE SHIPPING & RETURNS*</p><button id="addToCart">ADD TO CART</button><button id="addToWishlist">ADD TO WISHLIST</button><div id="qty"><button id="remove">-</button><span><p>Quantity: </p><p>1</p></span><button id="add">+</button></div><p id="description">${product.description}</p>`
+    console.log(product)
 }
 
 
