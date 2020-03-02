@@ -77,8 +77,11 @@ localStorage.removeItem("productObject")
 
 function loadProduct() {
   const product = document.getElementsByClassName("product")
+  const wishlistBtn = document.getElementsByClassName("addToWishlistBtn")
+  const wishlistContainer = document.getElementById("wishlistContainer")
   for (var i = 0; i < product.length; i++) {
     product[i].addEventListener("click", getProduct)
+    wishlistBtn[i].addEventListener("click", addToWishlist)
     function getProduct(e) {
       fetch(`http://localhost:3000/api/ties/${e.target.parentNode.id}`, {
         headers: { Authorization: `Bearer ${sessionStorage.getItem("token")}` }
@@ -88,5 +91,43 @@ function loadProduct() {
           localStorage.setItem("productObject", JSON.stringify(content))
         })
     }
+    function addToWishlist(e) {
+      const productContainer = wishlistContainer.appendChild(document.createElement("div"))
+      const productImage = productContainer.appendChild(document.createElement("img"))
+      const wishlistText = document.getElementById("wishlistText")
+      const informationContainer = productContainer.appendChild(document.createElement("div"))
+      const productName = informationContainer.appendChild(document.createElement("h3"))
+      const priceAndRemove = productContainer.appendChild(document.createElement("div"))
+      const productPrice = priceAndRemove.appendChild(document.createElement("h3"))
+      const productBrand = informationContainer.appendChild(document.createElement("p"))
+      const productColor = informationContainer.appendChild(document.createElement("p"))
+      const productMaterial = informationContainer.appendChild(document.createElement("p"))
+      const removeItemBtn = priceAndRemove.appendChild(document.createElement("button"))
+      removeItemBtn.setAttribute("onclick", "removeItemWishlist()")
+      priceAndRemove.classList = "priceAndRemove"
+      removeItemBtn.classList = "removeItemBtn"
+      informationContainer.classList = "informationContainer"
+      wishlistText.style.display = "none"
+      productContainer.classList = "productContainer"
+      fetch(`http://localhost:3000/api/ties/${e.target.previousSibling.previousSibling.id}`, {
+        headers: { Authorization: `Bearer ${sessionStorage.getItem("token")}` }
+      })
+        .then(r => r.json())
+        .then(content => {
+          productImage.setAttribute("src", `${content.image}`)
+          productName.innerHTML = `${content.name}`
+          productPrice.innerHTML = `${content.price}`
+          productBrand.innerHTML = `Brand: ${content.info.brand}`
+          productColor.innerHTML = `Color: ${content.info.color}`
+          productMaterial.innerHTML = `Material: ${content.info.material}`
+          removeItemBtn.innerHTML = "X";
+        })
+    }
   }
+}
+
+function removeItemWishlist(e) {
+  const products = document.getElementsByClassName("productContainer")
+  console.log(products)
+  products[0].style.display = "none"
 }
