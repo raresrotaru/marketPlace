@@ -487,6 +487,8 @@ div.products {
     cursor: pointer;
 }
 
+
+
 .addToWishlistBtn {
     display: none;
     position: absolute;
@@ -496,6 +498,14 @@ div.products {
     border: none;
     border-radius: 15px;
     cursor: pointer;
+}
+
+.addToCartBtn:active {
+    transform: scale(0.95);
+}
+
+.addToWishlistBtn:active {
+    transform: scale(0.95);
 }
 
 .products:hover .addToCartBtn {

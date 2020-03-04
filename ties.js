@@ -71,17 +71,15 @@ function backToTop() {
   window.scrollTo(0, 0);
 }
 
-window.addEventListener("load", loadProduct)
+window.addEventListener('load', loadProduct)
+window.addEventListener('load', addItemWishlist)
 
 localStorage.removeItem("productObject")
 
 function loadProduct() {
   const product = document.getElementsByClassName("product")
-  const wishlistBtn = document.getElementsByClassName("addToWishlistBtn")
-  const wishlistContainer = document.getElementById("wishlistContainer")
   for (var i = 0; i < product.length; i++) {
     product[i].addEventListener("click", getProduct)
-    wishlistBtn[i].addEventListener("click", addToWishlist)
     function getProduct(e) {
       fetch(`http://localhost:3000/api/ties/${e.target.parentNode.id}`, {
         headers: { Authorization: `Bearer ${sessionStorage.getItem("token")}` }
@@ -91,7 +89,16 @@ function loadProduct() {
           localStorage.setItem("productObject", JSON.stringify(content))
         })
     }
-    function addToWishlist(e) {
+  }
+}
+
+
+function addItemWishlist() {
+  const wishlistBtn = document.getElementsByClassName("addToWishlistBtn")
+  const wishlistContainer = document.getElementById("wishlistContainer")
+  for (var i = 0; i < wishlistBtn.length; i++) {
+    wishlistBtn[i].addEventListener('click', function (e) {
+      console.log('salut')
       const productContainer = wishlistContainer.appendChild(document.createElement("div"))
       const productImage = productContainer.appendChild(document.createElement("img"))
       const wishlistText = document.getElementById("wishlistText")
@@ -103,7 +110,6 @@ function loadProduct() {
       const productColor = informationContainer.appendChild(document.createElement("p"))
       const productMaterial = informationContainer.appendChild(document.createElement("p"))
       const removeItemBtn = priceAndRemove.appendChild(document.createElement("button"))
-      removeItemBtn.setAttribute("onclick", "removeItemWishlist()")
       priceAndRemove.classList = "priceAndRemove"
       removeItemBtn.classList = "removeItemBtn"
       informationContainer.classList = "informationContainer"
@@ -121,13 +127,13 @@ function loadProduct() {
           productColor.innerHTML = `Color: ${content.info.color}`
           productMaterial.innerHTML = `Material: ${content.info.material}`
           removeItemBtn.innerHTML = "X";
+          removeItemBtn.addEventListener('click', removeItem)
+          function removeItem(e) {
+            e.target.parentNode.parentNode.remove()
+          }
         })
-    }
+    })
   }
 }
 
-function removeItemWishlist(e) {
-  const products = document.getElementsByClassName("productContainer")
-  console.log(products)
-  products[0].style.display = "none"
-}
+
