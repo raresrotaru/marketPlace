@@ -420,6 +420,11 @@ li.menuElements {
     margin-bottom: 20px;
 }
 
+#firstImage img, #secondImage img {
+    width: 100%;
+    height: 100%;
+}
+
 #firstImage:active, #secondImage:active {
     border: 1px solid #1565c7;
 }

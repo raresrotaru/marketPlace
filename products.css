@@ -23,6 +23,15 @@ header {
     border-bottom: 1px solid black;
 }
 
+/* Sticky navbar */
+
+.sticky {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1;
+  }
+
 /* The search bar  */
 
 #searchContainer {
@@ -93,7 +102,6 @@ header {
 
 #accountIcon, #favoritesIcon, #cartIcon {
     font-size: 24px;
-    transition: transform 0.2s ease;
     padding-right: 3px;
 }
 
@@ -244,11 +252,6 @@ header {
     justify-content: center;
     align-items: center;
     margin-top: 5px;
-    display: none;
-}
-
-.productContainer:hover .removeItemBtn {
-    display: initial;
 }
 
 .productContainer:hover {
@@ -258,7 +261,7 @@ header {
 
 #cartContainer {
     width: 300px;
-    height: 80px;
+    height: auto;
     border: none;
     border-radius: 15px;
     position: absolute;
@@ -274,11 +277,24 @@ header {
     justify-content: space-evenly;
     align-items: center;
     flex-direction: column;
+    font-size: 11px;
 }
 
 #navBar1>ul>li:hover #cartContainer {
     display: flex;
     animation: loadContainer 0.35s forwards;
+}
+
+#qtyContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#addQty, #removeQty {
+    height: 20px;
+    margin: 3px;
+    font-size: 16px;
 }
 
 /* End icons */

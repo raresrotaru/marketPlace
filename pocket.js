@@ -73,7 +73,7 @@ function backToTop() {
 
 window.addEventListener("load", loadProduct)
 
-localStorage.removeItem("productObject")
+// sessionStorage.removeItem("productObject")
 
 function loadProduct() {
   const product = document.getElementsByClassName("product")
@@ -85,8 +85,7 @@ function loadProduct() {
       })
         .then(r => r.json())
         .then(content => {
-
-          localStorage.setItem("productObject", JSON.stringify(content))
+          sessionStorage.setItem("productObject", JSON.stringify(content))
         })
     }
   }

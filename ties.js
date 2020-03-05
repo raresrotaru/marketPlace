@@ -73,8 +73,9 @@ function backToTop() {
 
 window.addEventListener('load', loadProduct)
 window.addEventListener('load', addItemWishlist)
+window.addEventListener('load', addItemCart)
 
-localStorage.removeItem("productObject")
+// sessionStorage.removeItem("productObject")
 
 function loadProduct() {
   const product = document.getElementsByClassName("product")
@@ -86,7 +87,7 @@ function loadProduct() {
       })
         .then(r => r.json())
         .then(content => {
-          localStorage.setItem("productObject", JSON.stringify(content))
+          sessionStorage.setItem("productObject", JSON.stringify(content))
         })
     }
   }
@@ -136,4 +137,77 @@ function addItemWishlist() {
   }
 }
 
+function addItemCart() {
+  const cartBtn = document.getElementsByClassName("addToCartBtn")
+  const cartContainer = document.getElementById("cartContainer")
+  var productQty = 0;
+  for (var i = 0; i < cartBtn.length; i++) {
+    cartBtn[i].addEventListener('click', function (e) {
+      console.log('salut')
+      const productContainer = cartContainer.appendChild(document.createElement("div"))
+      const productImage = productContainer.appendChild(document.createElement("img"))
+      const cartText = document.getElementById("cartText")
+      const informationContainer = productContainer.appendChild(document.createElement("div"))
+      const productName = informationContainer.appendChild(document.createElement("h3"))
+      const priceAndRemove = productContainer.appendChild(document.createElement("div"))
+      const productPrice = priceAndRemove.appendChild(document.createElement("h3"))
+      const productBrand = informationContainer.appendChild(document.createElement("p"))
+      const productColor = informationContainer.appendChild(document.createElement("p"))
+      const productMaterial = informationContainer.appendChild(document.createElement("p"))
+      const removeItemBtn = priceAndRemove.appendChild(document.createElement("button"))
+      const qtyContainer = priceAndRemove.appendChild(document.createElement("div"))
+      const addQtyBtn = qtyContainer.appendChild(document.createElement("button"))
+      const qtyText = qtyContainer.appendChild(document.createElement("p"))
+      const removeQtyBtn = qtyContainer.appendChild(document.createElement("button"))
+      const price = content.price.replace("$", "").replace(/,/g,"")
+      var qtyTextValue = 1;
+      qtyText.innerHTML = qtyTextValue;
+      addQtyBtn.addEventListener("click", function () {
+        qtyTextValue++;
+        qtyText.innerHTML = qtyTextValue;
+      })
+      removeQtyBtn.addEventListener("click", function () {
+        if(qtyTextValue > 1) {
+          qtyTextValue--;
+          qtyText.innerHTML = qtyTextValue;
+        } else {
+          return;
+        }
+      })
+      addQtyBtn.innerHTML = "+"
+      removeQtyBtn.innerHTML = "-"
+      removeQtyBtn.setAttribute("id", "removeQty")
+      addQtyBtn.setAttribute("id", "addQty")
+      qtyContainer.setAttribute("id", "qtyContainer")
+      priceAndRemove.classList = "priceAndRemove"
+      removeItemBtn.classList = "removeItemBtn"
+      informationContainer.classList = "informationContainer"
+      cartText.style.display = "none"
+      productContainer.classList = "productContainer"
+      fetch(`http://localhost:3000/api/ties/${e.target.previousSibling.id}`, {
+        headers: { Authorization: `Bearer ${sessionStorage.getItem("token")}` }
+      })
+        .then(r => r.json())
+        .then(content => {
+          productImage.setAttribute("src", `${content.image}`)
+          productName.innerHTML = `${content.name}`
+          productPrice.innerHTML = `${content.price}`
+          productBrand.innerHTML = `Brand: ${content.info.brand}`
+          productColor.innerHTML = `Color: ${content.info.color}`
+          productMaterial.innerHTML = `Material: ${content.info.material}`
+          removeItemBtn.innerHTML = "X";
+          removeItemBtn.addEventListener('click', removeItem)
+          const numberOfProducts = document.getElementById("numberOfProducts")
+          productQty++;
+          numberOfProducts.innerHTML = productQty
+          function removeItem(e) {
+            e.target.parentNode.parentNode.remove()
+            productQty--;
+            numberOfProducts.innerHTML = productQty
+            qtyText.innerHTML = productQty
+          }
+        })
+    })
+  }
+}
 
