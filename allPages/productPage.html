@@ -5,14 +5,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Neckties | Tiesnsocks.com</title>
-    <link rel="stylesheet" href="products.css" />
+    <link rel="stylesheet" href="productPage.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" />
     <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
 </head>
 
 <body>
     <header>
-        <a href="index.html"><img src="logo.png" alt="Tiesnsocks Logo" style="padding-top: 8px;"></a>
+        <a href="../index.html"><img src="../images/logo.png" alt="Tiesnsocks Logo" style="padding-top: 8px;"></a>
         <div style="width: 600px;">
             <div class="container" id="searchContainer">
                 <form id="searchForm">
@@ -69,12 +69,24 @@
             </li>
         </ul>
     </nav>
-    <div id="presentationImg"
-        style="background: url(presentationImg2.jpg); background-repeat: no-repeat; background-size: cover;">
-        <h1>BOW TIES</h1>
+    <div id="mainContainer">
+        <div id="addToWishlistAlert"><p>You added a new product to your wishlist!</p></div><div id="addToCartAlert"><p>You added a new product to your cart!</p></div>
+        <div id="preview">
+            <div id="images">
+                <div id="firstImage"></div>
+                <div id="secondImage"></div>
+            </div>
+            <div id="imageContainer">
+                <i class="far fa-arrow-alt-circle-left" id="prevBtn"></i>
+                <i class="far fa-arrow-alt-circle-right" id="nextBtn"></i>
+                <div id="imageCarousel"></div>
+            </div>
+            <div id="mainInformation"></div>
+        </div>
+        <div id="description"></div>
     </div>
-    <div id="mainContainer"><div id="addToWishlistAlert"><p>You added a new product to your wishlist!</p></div><div id="addToCartAlert"><p>You added a new product to your cart!</p></div></div>
-    <footer id="footer">
+    <div id="productDetailsContainer"></div>
+    <footer>
         <div class="container" id="firstSection">
             <div class="container" id="textSection">
                 <h1>JOIN OUR NEWSLETTER</h1>
@@ -139,7 +151,7 @@
     </footer>
     <a id="goTopBtn"><i class="fas fa-chevron-circle-up"></i></a>
 
-    <script src="bowTies.js"></script>
+    <script src="productPage.js"></script>
 </body>
 
 </html>

@@ -496,7 +496,6 @@ div#presentationImg {
     box-sizing: border-box;
     width: 100vw;
     height: 400px;
-    background-image: url(presentationImg.jpg);
     background-repeat: no-repeat;
     background-position: top;
     background-size: cover;
