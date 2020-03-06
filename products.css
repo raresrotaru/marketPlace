@@ -30,7 +30,7 @@ header {
     top: 0;
     width: 100%;
     z-index: 1;
-  }
+}
 
 /* The search bar  */
 
@@ -189,7 +189,7 @@ header {
 }
 
 #wishlistContainer {
-    width: 300px;
+    width: 350px;
     height: auto;
     border: none;
     border-radius: 15px;
@@ -207,7 +207,7 @@ header {
     align-items: center;
     flex-direction: column;
     cursor: auto;
-    font-size: 11px;
+    font-size: 13px;
 }
 
 #navBar1>ul>li:hover #wishlistContainer {
@@ -216,7 +216,7 @@ header {
 }
 
 .productContainer {
-    width: 250px;
+    width: 300px;
     height: 80px;
     display: flex;
     justify-content: space-between;
@@ -225,6 +225,7 @@ header {
     border-radius: 15px;
     overflow: hidden;
     margin-bottom: 10px;
+    font-size: 11px;
 }
 
 .productContainer img {
@@ -232,7 +233,7 @@ header {
 }
 
 .informationContainer {
-    width: 120px;
+    width: 150px;
     height: 100%;
 }
 
@@ -260,7 +261,7 @@ header {
 }
 
 #cartContainer {
-    width: 300px;
+    width: 350px;
     height: auto;
     border: none;
     border-radius: 15px;
@@ -296,6 +297,64 @@ header {
     margin: 3px;
     font-size: 16px;
 }
+
+#totalContainer {
+    display: flex;
+    width: 300px;
+    justify-content: space-around;
+    font-size: 13px;
+}
+
+#totalQty, #totalPrice {
+    font-weight: bold;
+}
+
+#addToWishlistAlert {
+    width: 400px;
+    height: 50px;
+    border: none;
+    box-shadow: 0 2px 20px 0 rgba(0, 0, 0, .15);
+    z-index: 1;
+    display: none;
+    position: fixed;
+    bottom: 75vh;
+    right: 20px;
+    border-radius: 15px;
+    background-color: white;
+    justify-content: center;
+    align-items: center;
+    transform: translateX(300px);
+    animation: wishlistSlide 0.2s forwards;
+}
+
+@keyframes wishlistSlide {
+    from {transform: translateX(300px);}
+    to {transform: translateX(0px);}
+}
+
+#addToCartAlert {
+    width: 400px;
+    height: 50px;
+    border: none;
+    box-shadow: 0 2px 20px 0 rgba(0, 0, 0, .15);
+    z-index: 1;
+    display: none;
+    position: fixed;
+    bottom: 75vh;
+    right: 20px;
+    border-radius: 15px;
+    background-color: white;
+    justify-content: center;
+    align-items: center;
+    transform: translateX(300px);
+    animation: cartSlide 0.1s forwards;
+}
+
+@keyframes cartSlide {
+    from {transform: translateX(300px);}
+    to {transform: translateX(0px);}
+}
+
 
 /* End icons */
 
@@ -502,8 +561,6 @@ div.products {
     color: #f0f0f0;
     cursor: pointer;
 }
-
-
 
 .addToWishlistBtn {
     display: none;

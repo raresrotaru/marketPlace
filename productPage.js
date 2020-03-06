@@ -28,6 +28,9 @@ function backToTop() {
 //Load product on page
 
 window.addEventListener("load", loadProduct)
+window.addEventListener('load', addItemWishlist)
+window.addEventListener('load', addItemCart)
+
 
 
 
@@ -44,7 +47,7 @@ function loadProduct() {
     firstSmallImage.setAttribute("src", `${product.image}`)
     secondSmallImage.setAttribute("src", `${product.image2}`)
     imageCarousel.innerHTML = `<img src="${product.image2}" id="lastClone" alt="" style="width: 400px" /> <img src="${product.image}" alt="" style="width: 400px"/>  <img src="${product.image2}" alt="" style="width: 400px"/> <img src="${product.image}" id="firstClone" alt="" style="width: 400px"/>`
-    mainInformation.innerHTML = `<div id="namePrice"><h1>${product.name}</h1> <h5>${product.info.brand}® by Tiesnsocks.com</h5><h2>${product.price}</h2><p>FREE SHIPPING & RETURNS*</p></div><div id="buttons"><button id="addToCart">ADD TO CART</button><button id="addToWishlist">ADD TO WISHLIST</button><div id="qty"><button id="remove">-</button><span><p>Quantity: </p><p>1</p></span><button id="add">+</button></div></div><p id="description">${product.description}</p>`
+    mainInformation.innerHTML = `<div id="namePrice"><h1>${product.name}</h1> <h5>${product.info.brand}® by Tiesnsocks.com</h5><h2>${product.price}</h2><p>FREE SHIPPING & RETURNS*</p></div><div id="buttons"><button id="addToCart">ADD TO CART</button><button id="addToWishlist">ADD TO WISHLIST</button></div><p id="description">${product.description}</p>`
     productDetailsContainer.innerHTML = `<hr><h2 id="title">About the product</h2><div id="productDetails"><p><b>Product Code: </b>${product.info.listingNumber}</p><p><b>Name: </b>${product.name}</p><p><b>Product: </b>${product.productType}</p><p><b>Color: </b>${product.info.color}</p><p><b>Brand: </b>${product.info.brand}</p><p><b>Material: </b>${product.info.material}</p><p><b>Size: </b>${product.info.size}</p><p><b>Form: </b>${product.info.form}</p></div>`
 }
 
@@ -99,3 +102,135 @@ function carouselFunction() {
     })
 }
 
+function addItemWishlist() {
+    const wishlistBtn = document.getElementById("addToWishlist")
+    const wishlistContainer = document.getElementById("wishlistContainer")
+    const addToWishlistAlert = document.getElementById("addToWishlistAlert")
+    function wishlistAlert() {
+        addToWishlistAlert.style.display = "flex";
+        setTimeout(function stopAlert() {
+            addToWishlistAlert.style.display = "none"
+        }, 750)
+    }
+    wishlistBtn.addEventListener('click', function (e) {
+        wishlistAlert()
+        const productContainer = wishlistContainer.appendChild(document.createElement("div"))
+        const productImage = productContainer.appendChild(document.createElement("img"))
+        const wishlistText = document.getElementById("wishlistText")
+        const informationContainer = productContainer.appendChild(document.createElement("div"))
+        const productName = informationContainer.appendChild(document.createElement("h3"))
+        const priceAndRemove = productContainer.appendChild(document.createElement("div"))
+        const productPrice = priceAndRemove.appendChild(document.createElement("h3"))
+        const productBrand = informationContainer.appendChild(document.createElement("p"))
+        const productColor = informationContainer.appendChild(document.createElement("p"))
+        const productMaterial = informationContainer.appendChild(document.createElement("p"))
+        const removeItemBtn = priceAndRemove.appendChild(document.createElement("button"))
+        priceAndRemove.classList = "priceAndRemove"
+        removeItemBtn.classList = "removeItemBtn"
+        informationContainer.classList = "informationContainer"
+        wishlistText.style.display = "none"
+        productContainer.classList = "productContainer"
+        const content = JSON.parse(sessionStorage.getItem("productObject"))
+        productImage.setAttribute("src", `${content.image}`)
+        productName.innerHTML = `${content.name}`
+        productPrice.innerHTML = `${content.price}`
+        productBrand.innerHTML = `Brand: ${content.info.brand}`
+        productColor.innerHTML = `Color: ${content.info.color}`
+        productMaterial.innerHTML = `Material: ${content.info.material}`
+        removeItemBtn.innerHTML = "X";
+        removeItemBtn.addEventListener('click', removeItem)
+        function removeItem(e) {
+            e.target.parentNode.parentNode.remove()
+            console.log(e.target.parentNode)
+            if (wishlistContainer.lastElementChild.innerHTML === 'You have no favorite products!') {
+                wishlistText.style.display = "initial"
+            }
+            console.log(wishlistContainer.lastElementChild.innerHTML)
+        }
+    })
+}
+
+function addItemCart() {
+    const cartBtn = document.getElementById("addToCart")
+    const cartContainer = document.getElementById("cartContainer")
+    const addToCartAlert = document.getElementById("addToCartAlert")
+    var productQty = 0;
+    function cartAlert() {
+        addToCartAlert.style.display = "flex";
+        setTimeout(function stopAlert() {
+            addToCartAlert.style.display = "none"
+        }, 750)
+    }
+    cartBtn.addEventListener('click', function (e) {
+        cartAlert()
+        const totalContainer = document.getElementById("totalContainer")
+        const productContainer = document.createElement("div")
+        cartContainer.insertBefore(productContainer, totalContainer)
+        const productImage = productContainer.appendChild(document.createElement("img"))
+        const cartText = document.getElementById("cartText")
+        const informationContainer = productContainer.appendChild(document.createElement("div"))
+        const productName = informationContainer.appendChild(document.createElement("h3"))
+        const priceAndRemove = productContainer.appendChild(document.createElement("div"))
+        const productPrice = priceAndRemove.appendChild(document.createElement("h3"))
+        const productBrand = informationContainer.appendChild(document.createElement("p"))
+        const productColor = informationContainer.appendChild(document.createElement("p"))
+        const productMaterial = informationContainer.appendChild(document.createElement("p"))
+        const removeItemBtn = priceAndRemove.appendChild(document.createElement("button"))
+        const qtyContainer = priceAndRemove.appendChild(document.createElement("div"))
+        const addQtyBtn = qtyContainer.appendChild(document.createElement("button"))
+        const qtyText = qtyContainer.appendChild(document.createElement("p"))
+        const removeQtyBtn = qtyContainer.appendChild(document.createElement("button"))
+        const totalQty = document.getElementById("totalQty");
+        const totalPrice = document.getElementById("totalPrice");
+        var qtyTextValue = 1;
+        qtyText.innerHTML = qtyTextValue;
+        addQtyBtn.innerHTML = "+"
+        removeQtyBtn.innerHTML = "-"
+        removeQtyBtn.setAttribute("id", "removeQty")
+        addQtyBtn.setAttribute("id", "addQty")
+        qtyContainer.setAttribute("id", "qtyContainer")
+        priceAndRemove.classList = "priceAndRemove"
+        removeItemBtn.classList = "removeItemBtn"
+        informationContainer.classList = "informationContainer"
+        productContainer.classList = "productContainer"
+        const content = JSON.parse(sessionStorage.getItem("productObject"))
+        productImage.setAttribute("src", `${content.image}`)
+        productName.innerHTML = `${content.name}`
+        productPrice.innerHTML = `${content.price}`
+        productBrand.innerHTML = `Brand: ${content.info.brand}`
+        productColor.innerHTML = `Color: ${content.info.color}`
+        productMaterial.innerHTML = `Material: ${content.info.material}`
+        removeItemBtn.innerHTML = "X";
+        removeItemBtn.addEventListener('click', removeItem)
+        const numberOfProducts = document.getElementById("numberOfProducts")
+        const price = content.price.replace("$", "").replace(/,/g, "")
+        productQty++;
+        totalQty.innerHTML = productQty;
+        numberOfProducts.innerHTML = productQty
+        totalPrice.innerHTML = (Number(totalPrice.innerHTML) + Number(price)).toFixed(2);
+        addQtyBtn.addEventListener("click", function () {
+            qtyTextValue++;
+            qtyText.innerHTML = qtyTextValue;
+            totalQty.innerHTML++;
+            totalPrice.innerHTML = (Number(totalPrice.innerHTML) + Number(price)).toFixed(2)
+        })
+        removeQtyBtn.addEventListener("click", function () {
+            if (qtyTextValue > 1) {
+                qtyTextValue--;
+                qtyText.innerHTML = qtyTextValue;
+                totalQty.innerHTML--;
+                totalPrice.innerHTML = (Number(totalPrice.innerHTML) - Number(price)).toFixed(2)
+            } else {
+                return;
+            }
+        })
+        function removeItem(e) {
+            e.target.parentNode.parentNode.remove()
+            productQty--;
+            numberOfProducts.innerHTML = productQty
+            totalQty.innerHTML -= qtyText.innerHTML
+            totalPrice.innerHTML = (Number(totalPrice.innerHTML) - (Number(qtyText.innerHTML) * Number(price))).toFixed(2)
+            qtyText.innerHTML = productQty
+        }
+    })
+}

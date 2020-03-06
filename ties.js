@@ -97,9 +97,16 @@ function loadProduct() {
 function addItemWishlist() {
   const wishlistBtn = document.getElementsByClassName("addToWishlistBtn")
   const wishlistContainer = document.getElementById("wishlistContainer")
+  const addToWishlistAlert = document.getElementById("addToWishlistAlert")
+  function wishlistAlert() {
+    addToWishlistAlert.style.display = "flex";
+    setTimeout(function stopAlert() {
+      addToWishlistAlert.style.display = "none"
+    }, 750)
+  }
   for (var i = 0; i < wishlistBtn.length; i++) {
     wishlistBtn[i].addEventListener('click', function (e) {
-      console.log('salut')
+      wishlistAlert()
       const productContainer = wishlistContainer.appendChild(document.createElement("div"))
       const productImage = productContainer.appendChild(document.createElement("img"))
       const wishlistText = document.getElementById("wishlistText")
@@ -131,6 +138,10 @@ function addItemWishlist() {
           removeItemBtn.addEventListener('click', removeItem)
           function removeItem(e) {
             e.target.parentNode.parentNode.remove()
+            if (wishlistContainer.lastElementChild.innerHTML === 'You have no favorite products!') {
+              wishlistText.style.display = "initial"
+            }
+            console.log(wishlistContainer.lastElementChild.innerHTML)
           }
         })
     })
@@ -140,11 +151,20 @@ function addItemWishlist() {
 function addItemCart() {
   const cartBtn = document.getElementsByClassName("addToCartBtn")
   const cartContainer = document.getElementById("cartContainer")
+  const addToCartAlert = document.getElementById("addToCartAlert")
   var productQty = 0;
+  function cartAlert() {
+    addToCartAlert.style.display = "flex";
+    setTimeout(function stopAlert() {
+      addToCartAlert.style.display = "none"
+    }, 750)
+  }
   for (var i = 0; i < cartBtn.length; i++) {
     cartBtn[i].addEventListener('click', function (e) {
-      console.log('salut')
-      const productContainer = cartContainer.appendChild(document.createElement("div"))
+      cartAlert()
+      const totalContainer = document.getElementById("totalContainer")
+      const productContainer = document.createElement("div")
+      cartContainer.insertBefore(productContainer, totalContainer)
       const productImage = productContainer.appendChild(document.createElement("img"))
       const cartText = document.getElementById("cartText")
       const informationContainer = productContainer.appendChild(document.createElement("div"))
@@ -159,21 +179,10 @@ function addItemCart() {
       const addQtyBtn = qtyContainer.appendChild(document.createElement("button"))
       const qtyText = qtyContainer.appendChild(document.createElement("p"))
       const removeQtyBtn = qtyContainer.appendChild(document.createElement("button"))
-      const price = content.price.replace("$", "").replace(/,/g,"")
+      const totalQty = document.getElementById("totalQty");
+      const totalPrice = document.getElementById("totalPrice");
       var qtyTextValue = 1;
       qtyText.innerHTML = qtyTextValue;
-      addQtyBtn.addEventListener("click", function () {
-        qtyTextValue++;
-        qtyText.innerHTML = qtyTextValue;
-      })
-      removeQtyBtn.addEventListener("click", function () {
-        if(qtyTextValue > 1) {
-          qtyTextValue--;
-          qtyText.innerHTML = qtyTextValue;
-        } else {
-          return;
-        }
-      })
       addQtyBtn.innerHTML = "+"
       removeQtyBtn.innerHTML = "-"
       removeQtyBtn.setAttribute("id", "removeQty")
@@ -182,7 +191,6 @@ function addItemCart() {
       priceAndRemove.classList = "priceAndRemove"
       removeItemBtn.classList = "removeItemBtn"
       informationContainer.classList = "informationContainer"
-      cartText.style.display = "none"
       productContainer.classList = "productContainer"
       fetch(`http://localhost:3000/api/ties/${e.target.previousSibling.id}`, {
         headers: { Authorization: `Bearer ${sessionStorage.getItem("token")}` }
@@ -198,12 +206,33 @@ function addItemCart() {
           removeItemBtn.innerHTML = "X";
           removeItemBtn.addEventListener('click', removeItem)
           const numberOfProducts = document.getElementById("numberOfProducts")
+          const price = content.price.replace("$", "").replace(/,/g, "")
           productQty++;
+          totalQty.innerHTML = productQty;
           numberOfProducts.innerHTML = productQty
+          totalPrice.innerHTML = (Number(totalPrice.innerHTML) + Number(price)).toFixed(2);
+          addQtyBtn.addEventListener("click", function () {
+            qtyTextValue++;
+            qtyText.innerHTML = qtyTextValue;
+            totalQty.innerHTML++;
+            totalPrice.innerHTML = (Number(totalPrice.innerHTML) + Number(price)).toFixed(2)
+          })
+          removeQtyBtn.addEventListener("click", function () {
+            if (qtyTextValue > 1) {
+              qtyTextValue--;
+              qtyText.innerHTML = qtyTextValue;
+              totalQty.innerHTML--;
+              totalPrice.innerHTML = (Number(totalPrice.innerHTML) - Number(price)).toFixed(2)
+            } else {
+              return;
+            }
+          })
           function removeItem(e) {
             e.target.parentNode.parentNode.remove()
             productQty--;
             numberOfProducts.innerHTML = productQty
+            totalQty.innerHTML -= qtyText.innerHTML
+            totalPrice.innerHTML = (Number(totalPrice.innerHTML) - (Number(qtyText.innerHTML) * Number(price))).toFixed(2)
             qtyText.innerHTML = productQty
           }
         })

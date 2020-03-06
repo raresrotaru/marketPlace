@@ -25,8 +25,8 @@
         <nav id="navBar1">
             <ul>
                 <li><i class="fas fa-user" id="accountIcon"></i>Account<div id="accountContainer"><div id="loginText">Login to your account to place orders faster and to have full control of your products!</div><hr><div id="loginSignupBtns"><a href="login.html"><button id="loginBtn"><b>LOGIN</b></button></a><a href="signUp.html"><button id="signupBtn"><b>CREATE ACCOUNT</b></button></a></div></div></li>
-                <li><i class="fas fa-heart" id="favoritesIcon"></i>Wishlist<div id="wishlistContainer"><p>You have no favorite products!</p></div></li>
-                <li><i class="fas fa-shopping-cart" id="cartIcon"></i>Cart (<p id="numberOfProducts">0</p> )<div id="cartContainer"><p>You have no products in your cart!</p></div></li>
+                <li><i class="fas fa-heart" id="favoritesIcon"></i>Wishlist<div id="wishlistContainer"><p id="wishlistText">You have no favorite products!</p></div></li>
+                <li><i class="fas fa-shopping-cart" id="cartIcon"></i>Cart (<p id="numberOfProducts">0</p> )<div id="cartContainer"><div id="totalContainer">Total Quantity: <div id="totalQty">0</div>Total Price:  <b>$</b><div id="totalPrice">0</div></div></div></li>
             </ul>
         </nav>
     </header>
@@ -73,7 +73,7 @@
         style="background: url(presentationImg4.jpg); background-repeat: no-repeat; background-size: cover; background-position: center;">
         <h1>POCKET SQUARES</h1>
     </div>
-    <div id="mainContainer"></div>
+    <div id="mainContainer"><div id="addToWishlistAlert"><p>You added a new product to your wishlist!</p></div><div id="addToCartAlert"><p>You added a new product to your cart!</p></div></div>
     <footer id="footer">
         <div class="container" id="firstSection">
             <div class="container" id="textSection">
